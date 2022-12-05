@@ -17,12 +17,12 @@ type Response = Result | ErrorResponse;
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Response>) {
   try {
     const request = JSON.parse(req.body);
-    const response = await fetch('https://mk973d5m18.execute-api.ap-northeast-1.amazonaws.com/test_frontend/aa'), {
+    const response = await fetch(String(process.env.GET_SERVECE), {
       method: 'POST',
-      mode: 'cors',
       headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
+        mode: 'cors',
+        cache: 'no-cache',
       },
       body: JSON.stringify({ id: request.id }),
     });
